@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Boyfriend Test 💕</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Floating hearts -->
+    <div class="hearts">
+        <span>♡</span>
+        <span>♥</span>
+        <span>♡</span>
+        <span>♥</span>
+        <span>♡</span>
+        <span>♥</span>
+    </div>
+
+    <main class="container">
+
+        <!-- HOME SCREEN -->
+        <section id="homeScreen" class="screen active">
+
+            <div class="envelope">💌</div>
+
+            <p class="small-title">A VERY IMPORTANT TEST</p>
+
+            <h1>
+                So... you think<br>
+                you're the <span>best boyfriend?</span> 🤨
+            </h1>
+
+            <p class="subtitle">
+                There is only one way to find out...
+                <br>
+                Take the official girlfriend-approved test. 💗
+            </p>
+
+            <button class="main-button" onclick="startQuiz()">
+                Okay, test me! 💕
+            </button>
+
+            <p class="warning">
+                ⚠️ Results may cause excessive cuddling.
+            </p>
+
+        </section>
+
+
+        <!-- QUIZ SCREEN -->
+        <section id="quizScreen" class="screen">
+
+            <div class="quiz-card">
+
+                <div class="quiz-top">
+
+                    <span class="quiz-label">
+                        BOYFRIEND TEST
+                    </span>
+
+                    <span id="questionNumber">
+                        1 / 5
+                    </span>
+
+                </div>
+
+                <div class="progress-container">
+                    <div id="progressBar"></div>
+                </div>
+
+                <div class="question-area">
+
+                    <div id="questionEmoji" class="question-emoji">
+                        💕
+                    </div>
+
+                    <h2 id="question">
+                        Question goes here
+                    </h2>
+
+                    <div id="answers" class="answers">
+                        <!-- JavaScript inserts buttons here -->
+                    </div>
+
+                    <p id="reaction" class="reaction"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULT SCREEN -->
+        <section id="resultScreen" class="screen">
+
+            <div class="result-card">
+
+                <div class="celebration">
+                    🎉💗
+                </div>
+
+                <p class="small-title">
+                    OFFICIAL RESULT
+                </p>
+
+                <h1>
+                    YOU PASSED! 🥹
+                </h1>
+
+                <p class="subtitle">
+                    After extensive research,
+                    questionable calculations,
+                    and absolutely no bias...
+                </p>
+
+                <div class="gift-box">
+
+                    <div class="sparkles">
+                        ✨ 💕 ✨
+                    </div>
+
+                    <h2>
+                        Your prize is...
+                    </h2>
+
+                    <p class="prize">
+                        One extremely clingy girlfriend. 🫶
+                    </p>
+
+                    <p class="tiny">
+                        Lifetime subscription • No refunds • No exchanges
+                    </p>
+
+                </div>
+
+                <button class="main-button" onclick="showFinalMessage()">
+                    I'll take my prize 💋
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- FINAL SCREEN -->
+        <section id="finalScreen" class="screen">
+
+            <div class="final-card">
+
+                <div class="hug">
+                    🫂
+                </div>
+
+                <h1>
+                    Come here, you. 💗
+                </h1>
+
+                <p class="subtitle">
+                    Test complete.
+                    <br><br>
+                    Your only remaining task is to
+                    give your girlfriend a really,
+                    really big hug.
+                </p>
+
+                <div class="love-message">
+                    <span>💗</span>
+                    I love you more than you know.
+                    <span>💗</span>
+                </div>
+
+                <button class="main-button" onclick="restartQuiz()">
+                    Take the test again 😌
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        Made with way too much love 💕
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

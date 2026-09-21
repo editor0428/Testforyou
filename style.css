@@ -1,0 +1,716 @@
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #ffe3ed,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            #ffe9d8,
+            transparent 35%
+        ),
+        #fff8f8;
+
+    color: #553b45;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container {
+    width: 100%;
+    max-width: 650px;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================
+   SCREENS
+========================= */
+
+.screen {
+    display: none;
+
+    background: rgba(255, 255, 255, 0.75);
+
+    border: 1px solid #f0d8df;
+
+    border-radius: 35px;
+
+    padding: 45px 35px;
+
+    box-shadow:
+        0 20px 60px rgba(180, 90, 120, 0.12),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+
+    backdrop-filter: blur(12px);
+
+    text-align: center;
+
+    animation: fadeIn 0.5s ease;
+}
+
+.screen.active {
+    display: block;
+}
+
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+.envelope {
+    font-size: 75px;
+
+    animation:
+        floating 2.5s ease-in-out infinite;
+}
+
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(3deg);
+    }
+
+}
+
+
+.small-title {
+    margin-top: 15px;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    color: #b96d87;
+}
+
+
+h1 {
+    font-size: clamp(32px, 7vw, 48px);
+
+    line-height: 1.08;
+
+    margin: 15px 0;
+
+    font-weight: 900;
+
+    letter-spacing: -1.5px;
+}
+
+
+h1 span {
+    color: #c96f91;
+}
+
+
+.subtitle {
+    color: #866d76;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.main-button {
+    border: none;
+
+    margin-top: 25px;
+
+    padding: 15px 27px;
+
+    border-radius: 999px;
+
+    background: linear-gradient(
+        135deg,
+        #d8799c,
+        #bd5e83
+    );
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 25px rgba(190, 94, 131, 0.25);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+
+.main-button:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 14px 30px rgba(190, 94, 131, 0.35);
+}
+
+
+.main-button:active {
+    transform: scale(0.96);
+}
+
+
+.warning {
+
+    font-size: 12px;
+
+    color: #a58a92;
+
+    margin-top: 20px;
+}
+
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz-card {
+    text-align: left;
+}
+
+
+.quiz-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+
+}
+
+
+.quiz-label {
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    font-weight: 800;
+
+    color: #b96d87;
+}
+
+
+#questionNumber {
+
+    font-size: 13px;
+
+    color: #9c8089;
+
+    font-weight: 700;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-container {
+
+    width: 100%;
+
+    height: 8px;
+
+    background: #f3e2e8;
+
+    border-radius: 50px;
+
+    overflow: hidden;
+
+}
+
+
+#progressBar {
+
+    width: 20%;
+
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #d8799c,
+        #c45e86
+    );
+
+    border-radius: 50px;
+
+    transition: width 0.4s ease;
+}
+
+
+/* =========================
+   QUESTION
+========================= */
+
+.question-area {
+
+    padding-top: 25px;
+
+}
+
+
+.question-emoji {
+
+    font-size: 45px;
+
+    margin-bottom: 10px;
+}
+
+
+#question {
+
+    font-size: 27px;
+
+    line-height: 1.25;
+
+    margin-bottom: 25px;
+
+    font-weight: 900;
+}
+
+
+/* =========================
+   ANSWERS
+========================= */
+
+.answers {
+
+    display: grid;
+
+    gap: 12px;
+}
+
+
+.answer-button {
+
+    width: 100%;
+
+    padding: 16px 18px;
+
+    border-radius: 18px;
+
+    border: 1px solid #eed9e0;
+
+    background: #fffafa;
+
+    color: #604750;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        background 0.2s,
+        border 0.2s;
+}
+
+
+.answer-button:hover {
+
+    background: #fff0f5;
+
+    border-color: #d993aa;
+
+    transform: translateX(4px);
+}
+
+
+.answer-button.selected {
+
+    background: #f7d9e4;
+
+    border-color: #c96f91;
+
+}
+
+
+.answer-button:disabled {
+
+    cursor: default;
+}
+
+
+.reaction {
+
+    min-height: 25px;
+
+    margin-top: 15px;
+
+    color: #a15e78;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   RESULT
+========================= */
+
+.celebration {
+
+    font-size: 70px;
+
+    animation:
+        celebration 1s ease infinite alternate;
+}
+
+
+@keyframes celebration {
+
+    from {
+        transform: scale(1) rotate(-3deg);
+    }
+
+    to {
+        transform: scale(1.08) rotate(3deg);
+    }
+
+}
+
+
+.result-card h1 {
+
+    color: #c15f83;
+}
+
+
+.gift-box {
+
+    margin: 25px 0;
+
+    padding: 25px 20px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5f8,
+            #fffaf4
+        );
+
+    border: 2px dashed #d9a0b4;
+}
+
+
+.sparkles {
+
+    font-size: 25px;
+
+    letter-spacing: 8px;
+
+}
+
+
+.gift-box h2 {
+
+    margin: 12px 0 8px;
+
+    font-size: 20px;
+}
+
+
+.prize {
+
+    font-size: 21px;
+
+    font-weight: 900;
+
+    color: #b85f7d;
+
+}
+
+
+.tiny {
+
+    margin-top: 10px;
+
+    font-size: 11px;
+
+    color: #9d838b;
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+.hug {
+
+    font-size: 85px;
+
+    animation:
+        hugAnimation 1.8s ease-in-out infinite;
+}
+
+
+@keyframes hugAnimation {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+
+}
+
+
+.final-card h1 {
+
+    color: #bd6382;
+}
+
+
+.love-message {
+
+    margin-top: 25px;
+
+    padding: 18px;
+
+    border-radius: 20px;
+
+    background: #fff1f5;
+
+    color: #9d5c75;
+
+    font-weight: 800;
+
+    line-height: 1.6;
+}
+
+
+.love-message span {
+
+    margin: 0 8px;
+
+}
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.hearts {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+
+.hearts span {
+
+    position: absolute;
+
+    bottom: -50px;
+
+    color: #e8a5ba;
+
+    opacity: 0.4;
+
+    font-size: 25px;
+
+    animation: rise 10s linear infinite;
+}
+
+
+.hearts span:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+
+.hearts span:nth-child(2) {
+    left: 25%;
+    animation-delay: 3s;
+}
+
+
+.hearts span:nth-child(3) {
+    left: 45%;
+    animation-delay: 1s;
+}
+
+
+.hearts span:nth-child(4) {
+    left: 65%;
+    animation-delay: 4s;
+}
+
+
+.hearts span:nth-child(5) {
+    left: 80%;
+    animation-delay: 2s;
+}
+
+
+.hearts span:nth-child(6) {
+    left: 90%;
+    animation-delay: 5s;
+}
+
+
+@keyframes rise {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.4;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    position: fixed;
+
+    bottom: 12px;
+
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    color: #b08e99;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .screen {
+        padding: 32px 20px;
+
+        border-radius: 28px;
+    }
+
+    #question {
+        font-size: 23px;
+    }
+
+    .answer-button {
+        font-size: 14px;
+
+        padding: 15px;
+    }
+
+    footer {
+        display: none;
+    }
+
+}
