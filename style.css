@@ -405,7 +405,7 @@ button {
 .signature {
     margin-top: 25px;
     text-align: right;
-    font-family: "Pacifico", cursive;
+    font-family: "Quicksand", cursive;
     color: var(--dark-pink);
     font-size: 1.2rem;
 }
@@ -916,4 +916,10 @@ button {
     .final-message {
         font-size: 0.94rem;
     }
+
+    /* Final screen title - non-cursive */
+    .final-card h1 {
+    font-family: "Quicksand", sans-serif;
+    font-weight: 700;
+}
 }
