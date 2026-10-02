@@ -3,193 +3,646 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Boyfriend Test 💕</title>
-
+    <title>Boyfriend Test ❤️</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <!-- Floating hearts -->
-    <div class="hearts">
-        <span>♡</span>
-        <span>♥</span>
-        <span>♡</span>
-        <span>♥</span>
-        <span>♡</span>
-        <span>♥</span>
+    <div class="floating-hearts" aria-hidden="true">
+        <span>❤️</span>
+        <span>💕</span>
+        <span>💗</span>
+        <span>💖</span>
+        <span>💘</span>
+        <span>💞</span>
+        <span>❤️</span>
+        <span>💕</span>
     </div>
 
-    <main class="container">
+    <main>
 
-        <!-- HOME SCREEN -->
+        <!-- =========================
+             HOME SCREEN
+        ========================== -->
         <section id="homeScreen" class="screen active">
+            <div class="card intro-card">
 
-            <div class="envelope">💌</div>
+                <div class="big-heart">❤️</div>
 
-            <p class="small-title">A VERY IMPORTANT TEST</p>
+                <p class="small-label">OFFICIAL BOYFRIEND TEST</p>
 
-            <h1>
-                So... you think<br>
-                you're the <span>best boyfriend?</span> 🤨
-            </h1>
+                <h1>HOW WELL MY BOYFRIEND KNOWS ME?</h1>
 
-            <p class="subtitle">
-                There is only one way to find out...
-                <br>
-                Take the official girlfriend-approved test. 💗
-            </p>
+                <p class="intro-question">
+                    So... you really think you know me? 👀
+                </p>
 
-            <button class="main-button" onclick="startQuiz()">
-                Okay, test me! 💕
-            </button>
+                <p class="subtitle">
+                    Well, there's only one way to find out.
+                </p>
 
-            <p class="warning">
-                ⚠️ Results may cause excessive cuddling.
-            </p>
+                <div class="warning-box">
+                    <strong>🚨 WARNING 🚨</strong>
+                    <p>
+                        This test may contain extreme amounts of love,
+                        teasing and girlfriend bias.
+                    </p>
+                </div>
 
+                <button class="primary-btn" onclick="startExperience()">
+                    I'm ready ❤️
+                </button>
+
+                <p class="tiny-text">
+                    No cheating. I'm watching. 👀
+                </p>
+
+            </div>
         </section>
 
 
-        <!-- QUIZ SCREEN -->
+        <!-- =========================
+             BOYFRIEND TEST
+        ========================== -->
         <section id="quizScreen" class="screen">
-
-            <div class="quiz-card">
+            <div class="card quiz-card">
 
                 <div class="quiz-top">
-
-                    <span class="quiz-label">
-                        BOYFRIEND TEST
-                    </span>
-
-                    <span id="questionNumber">
-                        1 / 5
-                    </span>
-
+                    <span id="questionNumber">Question 1 of 5</span>
+                    <span id="scoreDisplay">❤️ 0</span>
                 </div>
 
                 <div class="progress-container">
-                    <div id="progressBar"></div>
+                    <div id="progressBar" class="progress-bar"></div>
                 </div>
 
-                <div class="question-area">
+                <h2 id="questionText"></h2>
 
-                    <div id="questionEmoji" class="question-emoji">
-                        💕
-                    </div>
+                <div id="answerButtons" class="answers"></div>
 
-                    <h2 id="question">
-                        Question goes here
-                    </h2>
-
-                    <div id="answers" class="answers">
-                        <!-- JavaScript inserts buttons here -->
-                    </div>
-
-                    <p id="reaction" class="reaction"></p>
-
-                </div>
+                <p id="reactionText" class="reaction"></p>
 
             </div>
-
         </section>
 
 
-        <!-- RESULT SCREEN -->
-        <section id="resultScreen" class="screen">
+        <!-- =========================
+             PASS SCREEN
+        ========================== -->
+        <section id="passScreen" class="screen">
+            <div class="card pass-card">
 
-            <div class="result-card">
+                <div class="celebration">🎉</div>
 
-                <div class="celebration">
-                    🎉💗
-                </div>
+                <p class="small-label">MISSION 1 COMPLETE</p>
 
-                <p class="small-title">
-                    OFFICIAL RESULT
+                <h1>YOU PASSED!</h1>
+
+                <p>
+                    Congratulations, boyfriend.<br>
+                    You survived the test. 😂❤️
                 </p>
 
-                <h1>
-                    YOU PASSED! 🥹
-                </h1>
-
-                <p class="subtitle">
-                    After extensive research,
-                    questionable calculations,
-                    and absolutely no bias...
-                </p>
-
-                <div class="gift-box">
-
-                    <div class="sparkles">
-                        ✨ 💕 ✨
-                    </div>
-
-                    <h2>
-                        Your prize is...
-                    </h2>
-
-                    <p class="prize">
-                        One extremely clingy girlfriend. 🫶
-                    </p>
-
-                    <p class="tiny">
-                        Lifetime subscription • No refunds • No exchanges
-                    </p>
-
+                <div class="reward-box">
+                    <span>🏆 YOUR REWARD</span>
+                    <strong>One extremely cute girlfriend. 🫶</strong>
                 </div>
 
-                <button class="main-button" onclick="showFinalMessage()">
-                    I'll take my prize 💋
+                <p class="wait-text">
+                    But wait... 👀
+                </p>
+
+                <p>
+                    That was only the beginning.
+                </p>
+
+                <button class="primary-btn" onclick="showLoveLetter()">
+                    Unlock the next surprise 💌
                 </button>
 
             </div>
-
         </section>
 
 
-        <!-- FINAL SCREEN -->
+        <!-- =========================
+             LOVE LETTER
+        ========================== -->
+        <section id="loveScreen" class="screen">
+            <div class="card letter-card">
+
+                <div class="section-icon">💌</div>
+
+                <p class="small-label">A LITTLE SOMETHING FROM ME</p>
+
+                <h1>A little something from me</h1>
+
+                <div class="letter-content">
+                    <p>
+                        Hiii kannaaa,
+                    </p>
+
+                    <p>
+                        Neeku ee website nachidhi anukuntunna ante edho silly
+                        website ayina urike neekosam cheyyali anipinchi chestunnaa...
+                    </p>
+
+                    <p>
+                        Happy Boyfriend's day to my best boyfriend..
+                    </p>
+
+                    <p>
+                        Ippudante sir boyfriend eyy but tarvatha husband kooda
+                        avvalii ok naaaa?
+                    </p>
+
+                    <p>
+                        I love you the most kanna!!
+                    </p>
+
+                    <p>
+                        Im very lucky to have you in my life and you are stuck
+                        with me for life kanna...
+                    </p>
+
+                    <p class="signature">
+                        - yoursss munnuuuu
+                    </p>
+                </div>
+
+                <button class="primary-btn" onclick="showStory()">
+                    Our little story 🌱
+                </button>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             OUR LITTLE STORY
+        ========================== -->
+        <section id="storyScreen" class="screen">
+            <div class="card story-card">
+
+                <div class="section-icon">🌱</div>
+
+                <h1>Our little story</h1>
+
+                <p class="subtitle">
+                    No pictures needed. Just us. ❤️
+                </p>
+
+                <div class="story-timeline">
+
+                    <div class="story-item">
+                        <div class="story-dot">🌱</div>
+
+                        <div class="story-content">
+                            <h3>The beginning 🌱</h3>
+                            <p>
+                                The day we first started talking i never knew
+                                you will become this importatant in my life
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="story-item">
+                        <div class="story-dot">🥹</div>
+
+                        <div class="story-content">
+                            <h3>The moment I knew 🥹</h3>
+                            <p>
+                                Somewhere along the way, you became my favorite
+                                notification,person and my safe space
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="story-item">
+                        <div class="story-dot">😂</div>
+
+                        <div class="story-content">
+                            <h3>Our chaos 😂</h3>
+                            <p>
+                                Somehow we can turn literally anything into an
+                                argument and then start laughing five minutes
+                                later and somehow we always find our way back to
+                                each other and its all because of one constant
+                                reminder we made for ourselves that not to give
+                                up on each other!!
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="story-item">
+                        <div class="story-dot">❤️</div>
+
+                        <div class="story-content">
+                            <h3>Today ❤️</h3>
+                            <p>
+                                And today iam blessed to have such a caring,
+                                loving,loyal boyfriend who i can proudly call
+                                mine. Thank you for everything kanna!!
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="primary-btn" onclick="showReasons()">
+                    Something I want you to know 💕
+                </button>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             REASONS I LOVE YOU
+        ========================== -->
+        <section id="reasonsScreen" class="screen">
+            <div class="card reasons-card">
+
+                <div class="section-icon">💕</div>
+
+                <p class="small-label">JUST SO YOU KNOW...</p>
+
+                <h1>Reasons I Love You</h1>
+
+                <p class="subtitle">
+                    And I could probably keep going forever. 🥹❤️
+                </p>
+
+                <div class="reasons-list">
+
+                    <div class="reason">
+                        <span>1</span>
+                        <p>You make ordinary days feel special</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>2</span>
+                        <p>you somehow be extremely patient with me</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>3</span>
+                        <p>only you tolerate my drama,mood swings</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>4</span>
+                        <p>you choose me every single day</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>5</span>
+                        <p>you are my first and best boyfriend</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>6</span>
+                        <p>you love me for who iam</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>7</span>
+                        <p>you are everything i ever wanted</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>8</span>
+                        <p>you make me feel safe</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>9</span>
+                        <p>you make me feel happy,happier and happiest</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>10</span>
+                        <p>you understands me</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>11</span>
+                        <p>you stand up for me</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>12</span>
+                        <p>you fight for me</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>13</span>
+                        <p>you fight for our relationship</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>14</span>
+                        <p>you care for me</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>15</span>
+                        <p>you are the only one for me</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>16</span>
+                        <p>you let me be myself</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>17</span>
+                        <p>you answers my silly doubts</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>18</span>
+                        <p>you motivate me</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>19</span>
+                        <p>you make me feel understood</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>20</span>
+                        <p>you stood by me</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>21</span>
+                        <p>you know me better than anyone</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>22</span>
+                        <p>you listen to my yapping patiently</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>23</span>
+                        <p>you actually do <strong>LISTEN</strong> to what bothers me</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>24</span>
+                        <p>you <strong>LOVE ME</strong></p>
+                    </div>
+
+                    <div class="reason">
+                        <span>25</span>
+                        <p>You make every silly thing worth remembering</p>
+                    </div>
+
+                    <div class="reason">
+                        <span>26</span>
+                        <p>you make <strong>EVERYTHING BETTER</strong></p>
+                    </div>
+
+                    <div class="reason">
+                        <span>27</span>
+                        <p>Because you're <strong>YOU.</strong></p>
+                    </div>
+
+                    <div class="reason special-reason">
+                        <span>28</span>
+                        <p>Because you're the only one i <strong>LOVE</strong> ❤️</p>
+                    </div>
+
+                </div>
+
+                <button class="primary-btn" onclick="showLastQuestion()">
+                    One last thing... 🥹
+                </button>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             ONE LAST QUESTION
+        ========================== -->
+        <section id="lastQuestionScreen" class="screen">
+            <div class="card last-question-card">
+
+                <div class="big-heart">🥹</div>
+
+                <p class="small-label">ONE LAST QUESTION</p>
+
+                <h1>
+                    Will you stay with me for the rest of our lives? 🥺❤️
+                </h1>
+
+                <p class="subtitle">
+                    Choose carefully. 👀
+                </p>
+
+                <div class="last-question-buttons">
+
+                    <button
+                        id="yesButton"
+                        class="primary-btn"
+                        onclick="chooseYes()"
+                    >
+                        YES, OBVIOUSLY ❤️
+                    </button>
+
+                    <button
+                        id="noButton"
+                        class="secondary-btn no-btn"
+                        onclick="chooseNo()"
+                    >
+                        NO 😈
+                    </button>
+
+                </div>
+
+                <p id="noReaction" class="reaction"></p>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             OUR FUTURE
+        ========================== -->
+        <section id="futureScreen" class="screen">
+            <div class="card future-card">
+
+                <div class="section-icon">🫶</div>
+
+                <p class="small-label">OUR FUTURE</p>
+
+                <h1>Our Future 🫶</h1>
+
+                <p class="subtitle">
+                    Just imagine... ❤️
+                </p>
+
+                <div class="future-timeline">
+
+                    <div class="future-item">
+                        <div class="future-icon">❤️</div>
+                        <div>
+                            <span>Today</span>
+                            <strong>Boyfriend ❤️</strong>
+                        </div>
+                    </div>
+
+                    <div class="future-line"></div>
+
+                    <div class="future-item">
+                        <div class="future-icon">🥹</div>
+                        <div>
+                            <span>Soon</span>
+                            <strong>More memories 🥹</strong>
+                        </div>
+                    </div>
+
+                    <div class="future-line"></div>
+
+                    <div class="future-item">
+                        <div class="future-icon">💍</div>
+                        <div>
+                            <span>Someday</span>
+                            <strong>Husband? 👀💍</strong>
+                        </div>
+                    </div>
+
+                    <div class="future-line"></div>
+
+                    <div class="future-item">
+                        <div class="future-icon">🫶</div>
+                        <div>
+                            <span>Forever</span>
+                            <strong>Us 🫶</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="primary-btn" onclick="showFinalLock()">
+                    Continue ❤️
+                </button>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             FINAL UNLOCK
+        ========================== -->
+        <section id="finalLockScreen" class="screen">
+            <div class="card final-lock-card">
+
+                <div id="lockIcon" class="lock-icon">🔐</div>
+
+                <p class="small-label">FINAL UNLOCK</p>
+
+                <h1>One last secret...</h1>
+
+                <p>
+                    You passed the test.
+                </p>
+
+                <p>
+                    You read my letter.
+                </p>
+
+                <p>
+                    You survived my 28 reasons. 😂❤️
+                </p>
+
+                <div class="secret-box">
+                    <span>💌</span>
+                    <strong>But there's one last secret...</strong>
+                </div>
+
+                <button class="primary-btn unlock-btn" onclick="unlockFinal()">
+                    UNLOCK ❤️
+                </button>
+
+            </div>
+        </section>
+
+
+        <!-- =========================
+             FINAL SCREEN
+        ========================== -->
         <section id="finalScreen" class="screen">
+            <div class="card final-card">
 
-            <div class="final-card">
-
-                <div class="hug">
-                    🫂
+                <div class="final-hearts">
+                    💕 ❤️ 💕
                 </div>
 
-                <h1>
-                    Come here, you. 💗
-                </h1>
+                <p class="small-label">FOR MY FAVORITE PERSON</p>
 
-                <p class="subtitle">
-                    Test complete.
-                    <br><br>
-                    Your only remaining task is to
-                    give your girlfriend a really,
-                    really big hug.
-                </p>
+                <h1>HAPPY BOYFRIEND DAY ❤️</h1>
 
-                <div class="love-message">
-                    <span>💗</span>
-                    I love you more than you know.
-                    <span>💗</span>
+                <div class="final-message">
+
+                    <p>
+                        Happy Boyfriend Day, my love. 🥹❤️
+                    </p>
+
+                    <p>
+                        Thank you for being there for me always and for making
+                        me laugh, for listening to me and for making even the
+                        ordinary moments feel special.
+                    </p>
+
+                    <p>
+                        I’m so lucky to have you in my life and I hope we
+                        continue making countless memories together.
+                    </p>
+
+                    <p>
+                        No matter how much we tease, argue, annoy each other,
+                        or drive each other crazy 😂, I’ll always choose you.
+                        You are the only one i ever wanted and will always be
+                        no.1 irrespective of anything
+                    </p>
+
+                    <p class="big-love">
+                        I LOVE YOU. ❤️
+                    </p>
+
+                    <p>
+                        Here's to many more memories, more laughter, more chaos,
+                        and more of <strong>us</strong>. 🫶
+                    </p>
+
+                    <p class="signature">
+                        Happy Boyfriend Day, kanna. ❤️
+                    </p>
+
                 </div>
 
-                <button class="main-button" onclick="restartQuiz()">
-                    Take the test again 😌
+                <div class="final-heart">
+                    ❤️
+                </div>
+
+                <button class="secondary-btn" onclick="restartExperience()">
+                    Start again 🔄
                 </button>
 
             </div>
-
         </section>
 
     </main>
 
-
-    <footer>
-        Made with way too much love 💕
-    </footer>
-
+    <div id="confettiContainer" class="confetti-container"></div>
 
     <script src="script.js"></script>
 

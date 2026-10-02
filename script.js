@@ -1,363 +1,526 @@
-/* ==========================================
-   BOYFRIEND TEST
-========================================== */
+/* =====================================================
+   BOYFRIEND DAY WEBSITE
+===================================================== */
 
 
-/*
-    You can edit these questions!
+/* =====================================================
+   SCREEN CONTROL
+===================================================== */
 
-    Each question contains:
+function showScreen(id) {
+    const screens = document.querySelectorAll(".screen");
 
-    question
-    emoji
-    answers
-    reaction
-*/
+    screens.forEach((screen) => {
+        screen.classList.remove("active");
+    });
+
+    const target = document.getElementById(id);
+
+    if (target) {
+        target.classList.add("active");
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+}
+
+
+/* =====================================================
+   START EXPERIENCE
+===================================================== */
+
+function startExperience() {
+    currentQuestion = 0;
+    score = 0;
+
+    document.getElementById("scoreDisplay").textContent = "❤️ 0";
+
+    showScreen("quizScreen");
+    loadQuestion();
+}
+
+
+/* =====================================================
+   OPENING BOYFRIEND TEST
+===================================================== */
 
 const questions = [
-
     {
-        question: "Who loves whom more? 💕",
-
-        emoji: "🥰",
+        question: "What nickname do I secretly love the most? 👀",
 
         answers: [
-            "Me, obviously 😌",
-            "You do 🥺",
-            "It's a tie ❤️",
-            "We both know it's me 😏"
+            "Maa",
+            "Kanna",
+            "Bangaram",
+            "Bujji"
         ],
 
-        reaction:
-            "Hmm... suspicious answers. But I'll accept all of them. 😌💕"
+        correct: 0
     },
 
-
     {
-        question: "Who is more dramatic? 🎭",
-
-        emoji: "👀",
+        question: "What is my favourite thing to do? 😌",
 
         answers: [
-            "Definitely you",
-            "Me? Never 😇",
-            "We're both dramatic 😂",
-            "I refuse to answer"
+            "Sleep 😴",
+            "Eat 🍕",
+            "Irritate you 😈",
+            "Cook 👩‍🍳",
+            "All of the above hehehe ❤️"
         ],
 
-        reaction:
-            "Okayyy... I'll let you keep your answer. For now. 😂"
+        correct: 4
     },
 
-
     {
-        question: "Who says 'I miss you' first? 🥺",
-
-        emoji: "💌",
+        question: "What is my favourite hobby to do? 💕",
 
         answers: [
-            "Me",
-            "You",
-            "Whoever misses the other more",
-            "We both pretend we don't miss each other"
+            "Harry Potter 🪄",
+            "Writing ✍️",
+            "Cooking 👩‍🍳",
+            "K-dramas 📺"
         ],
 
-        reaction:
-            "Aww. Either way, we're both hopeless. 🫶"
+        correct: 2
     },
 
-
     {
-        question: "What is my favorite thing about you? 💗",
-
-        emoji: "🫶",
+        question: "What is one thing I'm more scared of? 😭",
 
         answers: [
-            "Your smile",
-            "The way you make me laugh",
-            "Your hugs",
-            "Everything about you"
+            "Heights 😵",
+            "Lizards 🦎",
+            "Cockroaches 🪳",
+            "Dogs 🐶"
         ],
 
-        reaction:
-            "Trick question! The answer is EVERYTHING. 💕"
+        correct: 0
     },
 
-
     {
-        question: "Who is the cutest couple? 👀",
-
-        emoji: "💑",
+        question: "What is the favourite thing of us which I secretly like? 🥹",
 
         answers: [
-            "Us, obviously",
-            "Still us",
-            "Do I even need to answer?",
-            "The answer better be us 😤"
+            "Our banter 😂",
+            "Spending quality time together 🫶",
+            "Irritating each other 😈",
+            "Fighting with you 😭"
         ],
 
-        reaction:
-            "Correct. There was never another option. 😌❤️"
+        /*
+            Q5 has no single correct answer.
+            Every option is accepted.
+        */
+        allCorrect: true,
+
+        customReaction:
+            "Everything we do together is i secretely like, you dumbo!!"
     }
-
 ];
 
 
-// Current question
-
 let currentQuestion = 0;
+let score = 0;
 
 
-// ==========================================
-// GET HTML ELEMENTS
-// ==========================================
-
-const homeScreen =
-    document.getElementById("homeScreen");
-
-const quizScreen =
-    document.getElementById("quizScreen");
-
-const resultScreen =
-    document.getElementById("resultScreen");
-
-const finalScreen =
-    document.getElementById("finalScreen");
-
-const questionNumber =
-    document.getElementById("questionNumber");
-
-const progressBar =
-    document.getElementById("progressBar");
-
-const questionText =
-    document.getElementById("question");
-
-const questionEmoji =
-    document.getElementById("questionEmoji");
-
-const answersContainer =
-    document.getElementById("answers");
-
-const reaction =
-    document.getElementById("reaction");
-
-
-// ==========================================
-// SHOW SCREEN
-// ==========================================
-
-function showScreen(screen) {
-
-    homeScreen.classList.remove("active");
-
-    quizScreen.classList.remove("active");
-
-    resultScreen.classList.remove("active");
-
-    finalScreen.classList.remove("active");
-
-    screen.classList.add("active");
-
-}
-
-
-// ==========================================
-// START QUIZ
-// ==========================================
-
-function startQuiz() {
-
-    currentQuestion = 0;
-
-    showScreen(quizScreen);
-
-    loadQuestion();
-
-}
-
-
-// ==========================================
-// LOAD QUESTION
-// ==========================================
+/* =====================================================
+   LOAD QUESTION
+===================================================== */
 
 function loadQuestion() {
 
-    const current =
-        questions[currentQuestion];
+    const question = questions[currentQuestion];
 
+    const questionText = document.getElementById("questionText");
+    const answerButtons = document.getElementById("answerButtons");
+    const questionNumber = document.getElementById("questionNumber");
+    const progressBar = document.getElementById("progressBar");
+    const reaction = document.getElementById("reactionText");
 
-    // Question number
+    questionText.textContent = question.question;
 
     questionNumber.textContent =
-        `${currentQuestion + 1} / ${questions.length}`;
-
-
-    // Progress
-
-    const progress =
-        ((currentQuestion + 1) /
-        questions.length) * 100;
+        `Question ${currentQuestion + 1} of ${questions.length}`;
 
     progressBar.style.width =
-        `${progress}%`;
-
-
-    // Question
-
-    questionText.textContent =
-        current.question;
-
-
-    // Emoji
-
-    questionEmoji.textContent =
-        current.emoji;
-
-
-    // Clear previous answers
-
-    answersContainer.innerHTML = "";
+        `${((currentQuestion + 1) / questions.length) * 100}%`;
 
     reaction.textContent = "";
 
+    answerButtons.innerHTML = "";
 
-    // Create answer buttons
+    question.answers.forEach((answer, index) => {
 
-    current.answers.forEach(
-        function(answer, index) {
+        const button = document.createElement("button");
 
-            const button =
-                document.createElement("button");
+        button.className = "answer-btn";
+        button.textContent = answer;
 
-            button.className =
-                "answer-button";
+        button.addEventListener("click", () => {
+            selectAnswer(index);
+        });
 
-            button.textContent =
-                answer;
-
-            button.type =
-                "button";
-
-
-            button.addEventListener(
-                "click",
-                function() {
-
-                    selectAnswer(
-                        button,
-                        current
-                    );
-
-                }
-            );
-
-
-            answersContainer.appendChild(
-                button
-            );
-
-        }
-    );
-
+        answerButtons.appendChild(button);
+    });
 }
 
 
-// ==========================================
-// SELECT ANSWER
-// ==========================================
+/* =====================================================
+   SELECT ANSWER
+===================================================== */
 
-function selectAnswer(
-    selectedButton,
-    current
-) {
+function selectAnswer(index) {
 
-    // Disable all buttons
+    const question = questions[currentQuestion];
 
-    const buttons =
-        document.querySelectorAll(
-            ".answer-button"
-        );
+    const buttons = document.querySelectorAll(".answer-btn");
+    const reaction = document.getElementById("reactionText");
 
-    buttons.forEach(
-        function(button) {
+    buttons.forEach((button) => {
+        button.disabled = true;
+    });
 
-            button.disabled = true;
+    /*
+        Question 5:
+        Every option is accepted.
+    */
 
+    const isCorrect =
+        question.allCorrect === true ||
+        index === question.correct;
+
+    if (isCorrect) {
+
+        buttons[index].classList.add("correct");
+
+        if (question.customReaction) {
+            reaction.textContent = question.customReaction;
+        } else {
+            reaction.textContent = "Correct! ❤️";
         }
-    );
+
+        score++;
+
+    } else {
+
+        buttons[index].classList.add("wrong");
+
+        reaction.textContent = "Hmm... try again! 😂";
+
+        /*
+            Highlight the correct answer.
+        */
+
+        if (typeof question.correct === "number") {
+            buttons[question.correct].classList.add("correct");
+        }
+    }
+
+    document.getElementById("scoreDisplay").textContent =
+        `❤️ ${score}`;
+
+    setTimeout(() => {
+
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+            loadQuestion();
+        } else {
+            finishQuiz();
+        }
+
+    }, 1300);
+}
 
 
-    // Highlight selected answer
+/* =====================================================
+   FINISH QUIZ
+===================================================== */
 
-    selectedButton.classList.add(
-        "selected"
-    );
+function finishQuiz() {
+
+    createConfetti();
+
+    setTimeout(() => {
+        showScreen("passScreen");
+    }, 300);
+}
 
 
-    // Show reaction
+/* =====================================================
+   LOVE LETTER
+===================================================== */
+
+function showLoveLetter() {
+    showScreen("loveScreen");
+}
+
+
+/* =====================================================
+   OUR LITTLE STORY
+===================================================== */
+
+function showStory() {
+    showScreen("storyScreen");
+}
+
+
+/* =====================================================
+   REASONS I LOVE YOU
+===================================================== */
+
+function showReasons() {
+    showScreen("reasonsScreen");
+}
+
+
+/* =====================================================
+   ONE LAST QUESTION
+===================================================== */
+
+function showLastQuestion() {
+
+    showScreen("lastQuestionScreen");
+
+    /*
+        Reset the NO button whenever the screen opens.
+    */
+
+    const noButton = document.getElementById("noButton");
+
+    noButton.classList.remove("moving");
+
+    noButton.style.left = "";
+    noButton.style.top = "";
+
+    document.getElementById("noReaction").textContent = "";
+}
+
+
+/* =====================================================
+   YES BUTTON
+===================================================== */
+
+function chooseYes() {
+
+    createConfetti();
+
+    setTimeout(() => {
+        showScreen("futureScreen");
+    }, 450);
+}
+
+
+/* =====================================================
+   NO BUTTON
+===================================================== */
+
+let noClickCount = 0;
+
+function chooseNo() {
+
+    const noButton = document.getElementById("noButton");
+    const reaction = document.getElementById("noReaction");
+
+    noClickCount++;
+
+    const funnyMessages = [
+        "Nice try. 😂",
+        "NOPE. Try again! 😈",
+        "You really thought I'd let you click that? 👀",
+        "Wrong answer, boyfriend. 😂❤️",
+        "The button said NO to your NO. 😭",
+        "Just click YES already! 🥹❤️"
+    ];
 
     reaction.textContent =
-        current.reaction;
+        funnyMessages[
+            Math.min(noClickCount - 1, funnyMessages.length - 1)
+        ];
 
-
-    // Wait before next question
-
-    setTimeout(
-        function() {
-
-            currentQuestion++;
-
-            if (
-                currentQuestion <
-                questions.length
-            ) {
-
-                loadQuestion();
-
-            } else {
-
-                showResult();
-
-            }
-
-        },
-        1200
-    );
-
+    moveNoButton(noButton);
 }
 
 
-// ==========================================
-// SHOW RESULT
-// ==========================================
+/* =====================================================
+   MOVE NO BUTTON
+===================================================== */
 
-function showResult() {
+function moveNoButton(button) {
 
-    showScreen(resultScreen);
+    button.classList.add("moving");
 
+    const padding = 20;
+
+    const maxX =
+        window.innerWidth -
+        button.offsetWidth -
+        padding;
+
+    const maxY =
+        window.innerHeight -
+        button.offsetHeight -
+        padding;
+
+    const minX = padding;
+    const minY = padding;
+
+    const randomX =
+        Math.floor(
+            Math.random() * Math.max(maxX - minX, 1)
+        ) + minX;
+
+    const randomY =
+        Math.floor(
+            Math.random() * Math.max(maxY - minY, 1)
+        ) + minY;
+
+    button.style.left = `${randomX}px`;
+    button.style.top = `${randomY}px`;
 }
 
 
-// ==========================================
-// FINAL MESSAGE
-// ==========================================
+/* =====================================================
+   FINAL UNLOCK
+===================================================== */
 
-function showFinalMessage() {
-
-    showScreen(finalScreen);
-
+function showFinalLock() {
+    showScreen("finalLockScreen");
 }
 
 
-// ==========================================
-// RESTART QUIZ
-// ==========================================
+function unlockFinal() {
 
-function restartQuiz() {
+    const lockIcon = document.getElementById("lockIcon");
+
+    lockIcon.textContent = "🔓";
+
+    createConfetti();
+
+    setTimeout(() => {
+        showScreen("finalScreen");
+        createConfetti();
+    }, 700);
+}
+
+
+/* =====================================================
+   RESTART EXPERIENCE
+===================================================== */
+
+function restartExperience() {
 
     currentQuestion = 0;
+    score = 0;
+    noClickCount = 0;
 
-    showScreen(homeScreen);
+    const noButton = document.getElementById("noButton");
 
+    if (noButton) {
+        noButton.classList.remove("moving");
+        noButton.style.left = "";
+        noButton.style.top = "";
+    }
+
+    document.getElementById("scoreDisplay").textContent = "❤️ 0";
+
+    showScreen("homeScreen");
 }
+
+
+/* =====================================================
+   FLOATING HEART EFFECT
+===================================================== */
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.textContent = "❤️";
+    heart.style.position = "fixed";
+    heart.style.left = `${Math.random() * 100}%`;
+    heart.style.bottom = "-30px";
+    heart.style.fontSize = `${14 + Math.random() * 20}px`;
+    heart.style.opacity = "0.8";
+    heart.style.pointerEvents = "none";
+    heart.style.zIndex = "1000";
+
+    heart.style.transition =
+        "transform 4s ease-out, opacity 4s ease-out";
+
+    document.body.appendChild(heart);
+
+    requestAnimationFrame(() => {
+
+        heart.style.transform =
+            `translateY(-${window.innerHeight + 100}px) rotate(${Math.random() * 180 - 90}deg)`;
+
+        heart.style.opacity = "0";
+    });
+
+    setTimeout(() => {
+        heart.remove();
+    }, 4200);
+}
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+function createConfetti() {
+
+    const container =
+        document.getElementById("confettiContainer");
+
+    const symbols = [
+        "❤️",
+        "💕",
+        "💗",
+        "💖",
+        "✨",
+        "🥹",
+        "🫶",
+        "💘"
+    ];
+
+    for (let i = 0; i < 45; i++) {
+
+        const piece = document.createElement("span");
+
+        piece.className = "confetti";
+
+        piece.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        piece.style.left =
+            `${Math.random() * 100}%`;
+
+        piece.style.animationDelay =
+            `${Math.random() * 0.8}s`;
+
+        piece.style.fontSize =
+            `${12 + Math.random() * 15}px`;
+
+        container.appendChild(piece);
+
+        setTimeout(() => {
+            piece.remove();
+        }, 4000);
+    }
+}
+
+
+/* =====================================================
+   CONTINUOUS HEARTS
+===================================================== */
+
+setInterval(() => {
+
+    if (Math.random() > 0.35) {
+        createHeart();
+    }
+
+}, 1800);
